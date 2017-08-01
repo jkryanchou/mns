@@ -233,7 +233,7 @@ class MNSClient:
         resp.header = resp_inter.header
         self.check_status(req_inter, resp_inter, resp)
         if resp.error_data == "":
-            resp.message_id, resp.message_body_md5 = SendMessageDecoder.decode(resp_inter.data, req_inter.get_req_id())
+            resp.message_id, resp.message_body_md5, resp.receipt_handle = SendMessageDecoder.decode(resp_inter.data, req_inter.get_req_id())
             if self.logger:
                 self.logger.info("SendMessage RequestId:%s QueueName:%s Priority:%s DelaySeconds:%s MessageId:%s MessageBodyMD5:%s" % \
                     (resp.get_requestid(), req.queue_name, req.priority, \

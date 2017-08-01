@@ -284,11 +284,11 @@ class SendMessageDecoder(DecoderBase):
     def decode(xml_data, req_id=None):
         data_dic = {}
         DecoderBase.xml_to_dic("Message", xml_data, data_dic, req_id)
-        key_list = ["MessageId", "MessageBodyMD5"]
+        key_list = ["MessageId", "MessageBodyMD5", "ReceiptHandle"]
         for key in key_list:
             if key not in data_dic.keys():
                 raise MNSClientNetworkException("RespDataDamaged", xml_data, req_id)
-        return data_dic["MessageId"], data_dic["MessageBodyMD5"]
+        return data_dic["MessageId"], data_dic["MessageBodyMD5"], data_dic["ReceiptHandle"]
 
 class BatchSendMessageDecoder(DecoderBase):
     @staticmethod

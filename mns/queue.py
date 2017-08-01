@@ -351,6 +351,7 @@ class Queue:
         msg = Message()
         msg.message_id = resp.message_id
         msg.message_body_md5 = resp.message_body_md5
+        msg.receipt_handle = resp.receipt_handle
         return msg
         
     def __batchsend_resp2msg__(self, resp):
